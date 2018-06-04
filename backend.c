@@ -892,6 +892,7 @@ static void handle_thinktime(struct thread_data *td, enum fio_ddir ddir)
 			over = (usperop - total) / usperop * -bs;
 
 		td->rate_io_issue_bytes[ddir] += (missed - over);
+		td->last_usec[ddir] += total;   // adjust for rate_process=poisson
 	}
 }
 
